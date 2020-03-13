@@ -9,7 +9,7 @@
       <button mat-button [matMenuTriggerFor]="menu"><mat-icon>account_circle</mat-icon></button>
       <mat-menu #menu="matMenu">
         <button mat-menu-item>Account Settings</button>
-        <button mat-menu-item>Logout</button>
+        <button mat-menu-item (click)="Logout()">Logout</button>
       </mat-menu>
     </mat-toolbar-row>
   </mat-toolbar>
@@ -17,7 +17,7 @@
     <mat-sidenav #drawer mode="side" opened role="navigation">
       <ul class="list-group">
         <mat-nav-list>
-          <li class="list-group-item" *ngFor="let brand of brands" (click)="onProductClick(brand[0])"><a mat-list-item >{{brand[1]}}</a></li>
+          <li class="list-group-item" *ngFor="let brand of brands" (click)="onProductClick(brand[1],brand[0])"><a mat-list-item >{{brand[1]}}</a></li>
       </mat-nav-list>
     </ul>
     </mat-sidenav>
@@ -27,11 +27,17 @@
       <div class="row">
         <div class="col-sm"  *ngFor="let product of products">
           <div class="card">
-            <h5 class="card-header text-center">{{product[0]}}</h5>
+            <h5 class="card-header text-center">{{product[1]}}</h5>
             <div class="card-body text-center">
               <div class="w-100 p-3">
-              <img src="../../assets/images/lipstick.jpeg"/>
+              <img src="/api/dumbloads/{{product[6]}}?{{getCurrentTime()}}"/>
               
+                
+              </div>
+              <div>
+                Brand:{{selectedBrand}}<br><br>
+                Item Name:{{product[1]}}<br><br>
+                <button mat-button [color]="'warn'"> Buy</button>
               </div>
             </div>
           </div>

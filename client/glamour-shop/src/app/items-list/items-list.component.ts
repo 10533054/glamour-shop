@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-items-list',
@@ -7,10 +8,11 @@ import { UserService } from '../user.service';
   styleUrls: ['./items-list.component.scss']
 })
 export class ItemsListComponent implements OnInit {
-
+  selectedBrand:string
   brands:[];
   products:[];
-  constructor(private userService:UserService) { }
+  ct= new Date().getTime();
+  constructor(private userService:UserService,private router:Router) { }
 
   ngOnInit() {
     this.userService.getAllBrands()
@@ -18,12 +20,20 @@ export class ItemsListComponent implements OnInit {
       this.brands = x;
     });
   }
-  onProductClick(prod_id){
+  onProductClick(prod_name,prod_id){
+    this.selectedBrand=prod_name;
     this.userService.getItemByBrandId(prod_id)
     .subscribe(x=> {
       this.products = x;
     });
+   
 
+  }
+  Logout() {
+    this.router.navigate(['login'])
+  }
+  getCurrentTime() {
+    return new Date().getTime();
   }
 
 }
