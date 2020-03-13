@@ -13,6 +13,7 @@ import { MatOptionModule } from '@angular/material/core';
 import { UserLoginComponent } from './user-login/user-login.component';
 import { ItemsListComponent } from './items-list/items-list.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
+import { AdminLoginComponent } from './admin-login/admin-login.component';
 
 @NgModule({
   declarations: [
@@ -20,10 +21,12 @@ import { AdminPageComponent } from './admin-page/admin-page.component';
     CreateUserComponent,
     UserLoginComponent,
     ItemsListComponent,
-    AdminPageComponent
+    AdminPageComponent,
+    AdminLoginComponent
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,  
     HttpClientModule,
     MatFormFieldModule,
     MatRadioModule,

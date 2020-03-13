@@ -1,0 +1,32 @@
+
+  <div class="body">
+    <div class="card">
+      <h5 class="card-header text-center">Administrator Login</h5>
+      <div class="card-body text-center">
+        <div class="w-100 p-3">
+        <div  [formGroup]="login" (ngSubmit)="onSubmit()">
+          <mat-form-field>
+            <mat-label>User Name</mat-label>
+            <input matInput formControlName="usr">
+            <mat-error>Plese Enter User Name</mat-error>
+          </mat-form-field>
+         
+          <mat-form-field>
+            <mat-label>Password</mat-label>
+            
+            <input matInput type="psw" formControlName="psw">
+            <mat-error>Plese Enter Password</mat-error>
+          </mat-form-field>
+          <button type="submit" [disabled]="!login.valid" mat-button (click)="onSubmit()">Submit</button>
+          <div class="mt-4">
+            <button mat-button class="text-left" (click)="signUp()">Sign up</button> 
+            <button type="submit" mat-button (click)="adminLogin()">User Login</button>
+          </div>
+  <div *ngIf="error">
+    <mat-error>Incorrect Password or username</mat-error>
+  </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>

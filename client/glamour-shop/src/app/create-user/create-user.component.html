@@ -5,41 +5,44 @@
       <div class="card-body text-center">
         <div>
           <div class="w-100 p-3">
-          <mat-form-field appearance="fill"> 
+            <form [formGroup]="createUser">
+              <mat-form-field appearance="fill" > 
+                <mat-label>User Name</mat-label>
+                <input matInput formControlName="u_name">
+                <mat-hint>Enter the User Name</mat-hint>
+              </mat-form-field><br>
+          <mat-form-field appearance="fill" > 
             <mat-label>Email</mat-label>
-            <input matInput>
+            <input matInput formControlName="email">
             <mat-hint>Enter the Email</mat-hint>
           </mat-form-field><br>
           <mat-form-field appearance="fill">
             <mat-label>Password</mat-label>
-            <input matInput>
+            <input matInput formControlName="psw">
             <mat-hint>Enter the Password</mat-hint>
           </mat-form-field><br>
         <mat-form-field appearance="fill">
           <mat-label>First Name</mat-label>
-          <input matInput>
+          <input matInput formControlName="f_name">
         </mat-form-field><br>
         <mat-form-field appearance="fill">
             <mat-label>Last Name</mat-label>
-            <input matInput>
+            <input matInput formControlName="l_name">
           </mat-form-field><br>
           <mat-form-field appearance="fill">
             <mat-label>Age</mat-label>
-            <input matInput>
+            <input matInput formControlName="age">
           </mat-form-field><br>
           <mat-form-field appearance="fill">
             <mat-label>Phone</mat-label>
-            <input matInput>
+            <input matInput formControlName="phone">
           </mat-form-field><br>
           <mat-form-field appearance="fill">
             <mat-label>Address</mat-label>
-            <input matInput>
+            <input matInput formControlName="add">
           </mat-form-field><br>
-          <mat-radio-group aria-label="Select an option">
-            <mat-radio-button class="mb-2 mr-2 " value="1">Admin</mat-radio-button>
-            <mat-radio-button value="2">Customer</mat-radio-button>
-          </mat-radio-group><br>
-          <button mat-button>Submit</button>
+        </form>
+        <button type="submit" [disabled]="!createUser.valid" mat-button (click)="Submit()">Submit</button>
         </div>
         </div>
       </div>

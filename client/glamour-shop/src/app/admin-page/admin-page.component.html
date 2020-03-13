@@ -9,7 +9,7 @@
       <button mat-button [matMenuTriggerFor]="menu"><mat-icon>account_circle</mat-icon></button>
       <mat-menu #menu="matMenu">
         <button mat-menu-item>Account Settings</button>
-        <button mat-menu-item>Logout</button>
+        <button mat-menu-item (click)="Logout()">Logout</button>
       </mat-menu>
     </mat-toolbar-row>
   </mat-toolbar>
@@ -18,9 +18,8 @@
       <ul class="list-group">
         <mat-nav-list>
 
-          <li class="list-group-item"><a mat-list-item >Add Item</a></li>
-          <li class="list-group-item"><a mat-list-item >Remove Item</a></li>
-          <li class="list-group-item"><a mat-list-item >Edit Item</a></li>
+          <li class="list-group-item"><a mat-list-item (click)="showADD()">Add Item</a></li>
+          <li class="list-group-item"><a mat-list-item (click)="showRemove()">Remove Item</a></li>
           <li class="list-group-item"><a mat-list-item >View User</a></li>
        
       </mat-nav-list>
@@ -28,48 +27,85 @@
     </mat-sidenav>
     <mat-sidenav-content>
   
-      <div class="container">
+      <div class="container" *ngIf="show">
       <div class="row">
         <div class="col-sm">
           <div class="card">
             <h5 class="card-header text-center">Add Item</h5>
             <div class="card-body text-center">
-              <div class="w-100 p-3">
-                
-
+              <div class="w-100 p-3"> 
+     <form [formGroup] = "addItem">    
 <mat-form-field>
   <mat-label>Select Brand</mat-label>
-  <mat-select>
-    <mat-option *ngFor="let brand of brands" [value]="brand[0]">
+  <mat-select formControlName="brand_id">
+    <mat-option *ngFor="let brand of brands" [value]="brand[0]" >
       {{brand[0]}}
     </mat-option>
   </mat-select>
-</mat-form-field>
+</mat-form-field><br><br>
+<mat-form-field > 
+  <mat-label>Product Name</mat-label>
+  <input matInput formControlName="product_name">
+  <mat-hint>Add product</mat-hint>
+</mat-form-field><br><br>
 
-<mat-form-field>
-  <mat-form-field appearance="fill"> 
+  <mat-form-field > 
     <mat-label>Price</mat-label>
-    <input matInput>
-    <mat-hint>Add product</mat-hint>
-  </mat-form-field>
-</mat-form-field>
+    <input matInput formControlName="price">
+    <mat-hint>Add price</mat-hint>
+</mat-form-field><br><br>
 
-<mat-form-field>
-  <mat-form-field appearance="fill"> 
+
+  <mat-form-field > 
     <mat-label>Quantity</mat-label>
-    <input matInput>
+    <input matInput formControlName="qty">
     <mat-hint>Add quantity</mat-hint>
   </mat-form-field>
-</mat-form-field>
-<mat-form-field>
-  <mat-form-field appearance="fill"> 
+<br><br>
+<input #csvInput hidden="true" type="file" onclick="this.value=null" (change)="csvInputChange($event)" />
+<button mat-flat-button color="primary" (click)="csvInput.click()">Choose image</button><br><br>
+  <mat-form-field > 
     <mat-label>Description</mat-label>
-    <input matInput>
+    <input matInput formControlName="desc">
     <mat-hint>Add Description</mat-hint>
   </mat-form-field>
-</mat-form-field>
+<button (click)="submit()"></button>
+</form>
+</div>
+</div>
+</div>
+</div>
 
-              
+</div>
+</div>   
+
+<div class="container" *ngIf="!show">
+  <div class="row">
+    <div class="col-sm">
+      <div class="card">
+        <h5 class="card-header text-center">Remove Item</h5>
+        <div class="card-body text-center">
+          <div class="w-100 p-3">
+  <form [formGroup] = "addItem">    
+<mat-form-field>
+<mat-label>Select Brand</mat-label>
+<mat-select (selectionChange)="teast()" #shoes>
+<mat-option *ngFor="let brand of brands" [value]="brand[0]" >
+  {{brand[1]}}
+</mat-option>
+</mat-select>
+</mat-form-field><br><br><br><br>
+<mat-form-field>
+  <mat-label>Select Item</mat-label>
+  <mat-select #shoes2>
+  <mat-option *ngFor="let product of products" [value]="product[0]" >
+    {{product[1]}}
+  </mat-option>
+  </mat-select>
+  </mat-form-field><br><br><br><br>
+
+<button (click)="submitRemove()" mat-button>Submit</button>
+</form>
               </div>
             </div>
           </div>
