@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-items-list',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ItemsListComponent implements OnInit {
 
-  constructor() { }
+  brands:[];
+  products:[];
+  constructor(private userService:UserService) { }
 
   ngOnInit() {
+    this.userService.getAllBrands()
+    .subscribe(x=> {
+      this.brands = x;
+    });
+  }
+  onProductClick(prod_id){
+    this.userService.getItemByBrandId(prod_id)
+    .subscribe(x=> {
+      this.products = x;
+    });
+
   }
 
 }

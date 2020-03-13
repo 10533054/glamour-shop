@@ -17,7 +17,12 @@
     <mat-sidenav #drawer mode="side" opened role="navigation">
       <ul class="list-group">
         <mat-nav-list>
-          <li class="list-group-item" *ngFor="let brand of brands" (click)="onProductClick(brand[0])"><a mat-list-item >{{brand[1]}}</a></li>
+
+          <li class="list-group-item"><a mat-list-item >Add Item</a></li>
+          <li class="list-group-item"><a mat-list-item >Remove Item</a></li>
+          <li class="list-group-item"><a mat-list-item >Edit Item</a></li>
+          <li class="list-group-item"><a mat-list-item >View User</a></li>
+       
       </mat-nav-list>
     </ul>
     </mat-sidenav>
@@ -25,17 +30,51 @@
   
       <div class="container">
       <div class="row">
-        <div class="col-sm"  *ngFor="let product of products">
+        <div class="col-sm">
           <div class="card">
-            <h5 class="card-header text-center">{{product[0]}}</h5>
+            <h5 class="card-header text-center">Add Item</h5>
             <div class="card-body text-center">
               <div class="w-100 p-3">
-              <img src="../../assets/images/lipstick.jpeg"/>
+                
+
+<mat-form-field>
+  <mat-label>Select Brand</mat-label>
+  <mat-select>
+    <mat-option *ngFor="let brand of brands" [value]="brand[0]">
+      {{brand[0]}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-form-field>
+  <mat-form-field appearance="fill"> 
+    <mat-label>Price</mat-label>
+    <input matInput>
+    <mat-hint>Add product</mat-hint>
+  </mat-form-field>
+</mat-form-field>
+
+<mat-form-field>
+  <mat-form-field appearance="fill"> 
+    <mat-label>Quantity</mat-label>
+    <input matInput>
+    <mat-hint>Add quantity</mat-hint>
+  </mat-form-field>
+</mat-form-field>
+<mat-form-field>
+  <mat-form-field appearance="fill"> 
+    <mat-label>Description</mat-label>
+    <input matInput>
+    <mat-hint>Add Description</mat-hint>
+  </mat-form-field>
+</mat-form-field>
+
               
               </div>
             </div>
           </div>
         </div>
+
       </div>
     </div>   
 
