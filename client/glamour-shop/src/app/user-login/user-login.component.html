@@ -1,15 +1,26 @@
 
-<div class="example-container">
-    <h1>Create User</h1>
-    <mat-form-field appearance="fill">
-        <mat-label>Email</mat-label>
-        <input matInput>
-      </mat-form-field><br>
-      <mat-form-field appearance="fill">
-        <mat-label>Password</mat-label>
-        <input matInput>
-      </mat-form-field><br>
+  <div class="body">
+  <div class="card">
+    <h5 class="card-header text-center">Login</h5>
+    <div class="card-body text-center">
+      <div class="w-100 p-3">
+      <div  [formGroup]="login" >
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="usr">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input matInput type="psw" formControlName="psw">
+        </mat-form-field>
+        <button mat-button (click)="onSubmit()">submit</button>
+        <div class="mt-4">
+          <button mat-button class="text-left">Sign up</button> 
+          <button mat-button>Admin Login</button>
+        </div>
 
-      <button mat-button>submit</button>
-
+      </div>
+      </div>
+    </div>
   </div>
+</div>
